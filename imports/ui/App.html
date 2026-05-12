@@ -1,0 +1,135 @@
+<head>
+    <title>Todo App</title>
+  </head>
+  
+  <body>
+    {{> mainContainer}}
+  </body>
+  
+  <template name="mainContainer">
+  
+    <div class="container">
+  
+        <h1 class="app-title">
+
+            <span class="title-icon">
+              ✓
+            </span>
+          
+            TaskFlow
+          
+          </h1>
+  
+      <form class="task-form">
+  
+        <input
+          type="text"
+          name="text"
+          placeholder="Enter Task"
+          required
+        />
+  
+        <select name="category">
+  
+          <option value="Work">
+            Work
+          </option>
+  
+          <option value="Personal">
+            Personal
+          </option>
+  
+          <option value="Urgent">
+            Urgent
+          </option>
+  
+        </select>
+  
+        <button type="submit">
+          Add
+        </button>
+  
+      </form>
+  
+      <div class="filters">
+  
+        <button
+          class="filter-btn {{#if isSelected 'All'}}active{{/if}}"
+          data-category="All"
+        >
+          All
+        </button>
+  
+        <button
+          class="filter-btn {{#if isSelected 'Work'}}active{{/if}}"
+          data-category="Work"
+        >
+          Work
+        </button>
+  
+        <button
+          class="filter-btn {{#if isSelected 'Personal'}}active{{/if}}"
+          data-category="Personal"
+        >
+          Personal
+        </button>
+  
+        <button
+          class="filter-btn {{#if isSelected 'Urgent'}}active{{/if}}"
+          data-category="Urgent"
+        >
+          Urgent
+        </button>
+  
+      </div>
+  
+      <ul id="task-list">
+  
+        {{#each tasks}}
+  
+        <li class="task-item">
+  
+          <div class="task-left">
+  
+            <input
+              type="checkbox"
+              class="complete-checkbox"
+              data-id="{{_id}}"
+            />
+  
+            <div>
+  
+              <strong class="{{#if completed}}completed{{/if}}">
+  
+                {{text}}
+  
+              </strong>
+  
+              <br>
+  
+              <span class="category">
+  
+                Category: {{category}}
+  
+              </span>
+  
+            </div>
+  
+          </div>
+  
+          <button
+            class="delete-btn"
+            data-id="{{_id}}"
+          >
+            Delete
+          </button>
+  
+        </li>
+  
+        {{/each}}
+  
+      </ul>
+  
+    </div>
+  
+  </template>
